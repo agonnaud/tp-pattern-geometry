@@ -13,14 +13,19 @@ public class Point implements Geometry {
 	public Point(Coordinate coordinate) {
 		this.coordinate = coordinate;
 	}
-	
+
+	public Coordinate getCoordinate() {
+		return coordinate;
+	}
+
 	@Override
 	public String getType() {
 		return TYPE;
 	}
 
-	public Coordinate getCoordinate() {
-		return coordinate;
+	@Override
+	public boolean isEmpty() {
+		return this.coordinate.isEmpty();
 	}
 
 }
