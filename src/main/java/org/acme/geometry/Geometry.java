@@ -26,4 +26,11 @@ public interface Geometry {
 	 * @return
 	 */
 	public Geometry clone() ;
+	
+	/**
+	 * Renvoie la bbox de la géométrie
+	 * @return
+	 */
+	public Envelope getEnvelope() ;
+
 }

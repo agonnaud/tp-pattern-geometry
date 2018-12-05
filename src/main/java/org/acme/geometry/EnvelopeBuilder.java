@@ -6,7 +6,6 @@ package org.acme.geometry;
  *
  */
 public class EnvelopeBuilder {
-	
 	private Interval boundsX = new Interval();
 	private Interval boundsY = new Interval();
 	
