@@ -17,6 +17,14 @@ public class Point implements Geometry {
 	public Coordinate getCoordinate() {
 		return coordinate;
 	}
+	
+	public double getX() {
+		return coordinate.getX();
+	}
+
+	public double getY() {
+		return coordinate.getY();
+	}
 
 	@Override
 	public String getType() {
@@ -26,6 +34,14 @@ public class Point implements Geometry {
 	@Override
 	public boolean isEmpty() {
 		return this.coordinate.isEmpty();
+	}
+
+	@Override
+	public void translate(double dx, double dy) {
+		this.coordinate = new Coordinate(
+			this.coordinate.getX()+dx, 
+			this.coordinate.getY()+dy
+		);
 	}
 
 }

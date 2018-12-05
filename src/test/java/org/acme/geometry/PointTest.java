@@ -20,5 +20,13 @@ public class PointTest {
 		Point g = new Point();
 		Assert.assertEquals("Point",g.getType());
 	}
-
+	
+	@Test
+	public void testTranslate() {
+		Point g = new Point(new Coordinate(3.0,4.0));
+		g.translate(2.0, 3.0);
+		Assert.assertEquals(5.0,g.getX(),EPSILON);
+		Assert.assertEquals(7.0,g.getY(),EPSILON);
+	}
+	
 }
