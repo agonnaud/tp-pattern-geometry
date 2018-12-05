@@ -44,4 +44,10 @@ public class Point implements Geometry {
 		);
 	}
 
+	@Override
+	public Point clone() {
+		// Remarque : coordinate est immuable
+		return new Point(coordinate);
+	}
+	
 }

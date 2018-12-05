@@ -20,4 +20,10 @@ public interface Geometry {
 	 * @param dy
 	 */
 	public void translate(double dx, double dy);
+	
+	/**
+	 * Renvoie une copie de la géométrie
+	 * @return
+	 */
+	public Geometry clone() ;
 }

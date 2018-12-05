@@ -42,4 +42,16 @@ public class LineString implements Geometry {
 		}
 	}
 
+	
+	@Override
+	public LineString clone() {
+		// Il faut copier le tableau
+		List<Point> newPoints = new ArrayList<>(getNumPoints());
+		for (Point point : points) {
+			// les points ne sont pas immuable
+			newPoints.add(point.clone());
+		}
+		return new LineString(newPoints);
+	}
+
 }
