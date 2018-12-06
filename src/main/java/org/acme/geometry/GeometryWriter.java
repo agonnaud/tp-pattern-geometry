@@ -23,4 +23,10 @@ public interface GeometryWriter {
 	 */
 	public String write(Geometry geometry);
 	
+	/**
+	 * Copie
+	 * @return
+	 */
+	public GeometryWriter clone();
+	
 }

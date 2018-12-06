@@ -28,4 +28,10 @@ public class GeoJSONWriter implements GeometryWriter {
 		return visitor.getResult();
 	}
 
+	@Override
+	public GeoJSONWriter clone() {
+		// Serait réellement utile avec des paramètres
+		return new GeoJSONWriter();
+	}
+	
 }

@@ -27,5 +27,11 @@ public class WktWriter implements GeometryWriter {
 		geometry.accept(visitor);
 		return visitor.getResult();
 	}
+	
+	@Override
+	public WktWriter clone() {
+		// Serait réellement utile avec des paramètres
+		return new WktWriter();
+	}	
 
 }
