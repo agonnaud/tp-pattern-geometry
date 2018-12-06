@@ -43,8 +43,8 @@ public interface Geometry {
 	 * Applique un visiteur sur la géométrie
 	 * @param visitor
 	 */
-	public void accept(GeometryVisitor visitor);
-	
+	public <T> T accept(GeometryVisitor<T> visitor);
+
 	/**
 	 * Notification des écouteurs d'événement après modification
 	 */

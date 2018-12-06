@@ -1,79 +1,83 @@
 package org.acme.geometry;
 
-public class GeoJSONVisitor implements GeometryVisitor {
+public class GeoJSONVisitor implements GeometryVisitor<Void> {
 
-	private StringBuilder s ;
-	
+	private StringBuilder s;
+
 	public GeoJSONVisitor() {
 		this.s = new StringBuilder();
 	}
 
-	public void visit(Point point) {
+	public Void visit(Point point) {
 		s.append("{");
-		s.append("\"type\": \""+point.getType()+"\",");
+		s.append("\"type\": \"" + point.getType() + "\",");
 		s.append("\"coordinate\": ");
 		write(point.getCoordinate());
 		s.append("}");
+		return null;
 	}
 
 	/**
 	 * Ecriture d'une LineString
+	 * 
 	 * @param s
 	 * @param g
 	 */
-	public void visit(LineString lineString) {
+	public Void visit(LineString lineString) {
 		s.append("{");
-		s.append("\"type\": \""+lineString.getType()+"\",");
+		s.append("\"type\": \"" + lineString.getType() + "\",");
 		s.append("\"coordinate\": [");
-		for ( int i = 0; i < lineString.getNumPoints(); i++ ){
-			if ( i != 0 ) {
+		for (int i = 0; i < lineString.getNumPoints(); i++) {
+			if (i != 0) {
 				s.append(",");
 			}
 			write(lineString.getPointN(i).getCoordinate());
 		}
 		s.append("]}");
+		return null;
 	}
 
-
 	@Override
-	public void visit(GeometryCollection geometryCollection) {
+	public Void visit(GeometryCollection geometryCollection) {
 		s.append("{");
-		s.append("\"type\": \""+geometryCollection.getType()+"\",");
+		s.append("\"type\": \"" + geometryCollection.getType() + "\",");
 		s.append("\"geometries\": [");
-		for ( int i = 0; i < geometryCollection.getNumGeometries(); i++ ){
-			if ( i != 0 ) {
+		for (int i = 0; i < geometryCollection.getNumGeometries(); i++) {
+			if (i != 0) {
 				s.append(",");
 			}
 			geometryCollection.getGeometryN(i).accept(this);
 		}
 		s.append("]}");
+		return null;
 	}
 
 	/**
 	 * Ecriture d'une coordonnées
+	 * 
 	 * @param s
 	 * @param coordinate
 	 */
-	private void write(Coordinate coordinate) {
-		if ( coordinate.isEmpty() ) {
+	private Void write(Coordinate coordinate) {
+		if (coordinate.isEmpty()) {
 			s.append("null");
-			return;
+			return null;
 		}
 		s.append("[");
 		s.append(coordinate.getX());
 		s.append(",");
 		s.append(coordinate.getY());
-		s.append("]");		
-	}
-	
-	/**
-	 * Renvoie le résultat
-	 * @return
-	 */
-	public String getResult(){
-		return s.toString();
+		s.append("]");
+		return null;
 	}
 
-	
+	/**
+	 * Renvoie le résultat
+	 * 
+	 * @return
+	 */
+	public String getResult() {
+		return s.toString();
+	}
 
 }

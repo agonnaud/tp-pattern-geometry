@@ -6,7 +6,7 @@ package org.acme.geometry;
  * @author MBorne
  *
  */
-public class EnvelopeBuilder implements GeometryVisitor {
+public class EnvelopeBuilder implements GeometryVisitor<Void> {
 	private Interval boundsX = new Interval();
 	private Interval boundsY = new Interval();
 	
@@ -28,22 +28,25 @@ public class EnvelopeBuilder implements GeometryVisitor {
 	}
 
 	@Override
-	public void visit(Point point) {
-		insert(point.getCoordinate());	
+	public Void visit(Point point) {
+		insert(point.getCoordinate());
+		return null;
 	}
 
 	@Override
-	public void visit(LineString lineString) {
+	public Void visit(LineString lineString) {
 		for ( int i = 0; i < lineString.getNumPoints(); i++ ) {
 			visit(lineString.getPointN(i));
 		}
+		return null;
 	}
 
 	@Override
-	public void visit(GeometryCollection geometryCollection) {
+	public Void visit(GeometryCollection geometryCollection) {
 		for ( int i = 0; i < geometryCollection.getNumGeometries(); i++ ) {
 			geometryCollection.getGeometryN(i).accept(this);
 		}
+		return null;
 	}
 
 

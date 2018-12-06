@@ -10,7 +10,7 @@ import java.io.PrintStream;
  * @author formation
  *
  */
-public class LogGeometryVisitor implements GeometryVisitor {
+public class LogGeometryVisitor implements GeometryVisitor<Void> {
 
 	private PrintStream out;
 	
@@ -23,19 +23,22 @@ public class LogGeometryVisitor implements GeometryVisitor {
 	}
 
 	@Override
-	public void visit(Point point) {
+	public Void visit(Point point) {
 		out.print("Je suis un point avec x="+point.getX()+" et y="+point.getY());
+		return null;
 	}
 
 	@Override
-	public void visit(LineString lineString) {
+	public Void visit(LineString lineString) {
 		out.print("Je suis une polyligne définie par "+lineString.getNumPoints()+" point(s)");
+		return null;
 	}
 
 	@Override
-	public void visit(GeometryCollection geometryCollection) {
+	public Void visit(GeometryCollection geometryCollection) {
 		out.print("Je suis une collection contenant "+geometryCollection.getNumGeometries()+" géométrie(s)");
+		return null;
 	}
-	
+
 
 }
