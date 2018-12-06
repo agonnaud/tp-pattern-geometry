@@ -35,4 +35,15 @@ public class WktTest {
 		Assert.assertEquals("LINESTRING(0.0 0.0,3.0 4.0)", wkt);
 	}
 
+	@Test
+	public void testEmptyCollection() {
+		String wkt = (new GeometryCollection()).asText();
+		Assert.assertEquals("GEOMETRYCOLLECTION EMPTY", wkt);
+	}
+
+	@Test
+	public void testCollectionA() {
+		String wkt = TestGeometryFactory.createCollectionA().asText();
+		Assert.assertEquals("GEOMETRYCOLLECTION(POINT(3.0 4.0),LINESTRING(0.0 0.0,3.0 4.0))", wkt);
+	}
 }

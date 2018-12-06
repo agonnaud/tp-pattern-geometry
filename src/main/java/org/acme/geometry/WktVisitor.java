@@ -48,12 +48,14 @@ public class WktVisitor implements GeometryVisitor {
 			s.append(" EMPTY");
 			return;
 		}
+		s.append("(");
 		for ( int i = 0; i < geometryCollection.getNumGeometries(); i++ ) {
 			if ( i != 0 ) {
 				s.append(",");
 			}
 			geometryCollection.getGeometryN(i).accept(this);
 		}
+		s.append(")");		
 	}
 	
 	/**
