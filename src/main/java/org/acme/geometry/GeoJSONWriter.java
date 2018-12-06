@@ -7,9 +7,9 @@ package org.acme.geometry;
  * @author formation
  *
  */
-public class WktWriter implements GeometryWriter {
+public class GeoJSONWriter implements GeometryWriter {
 
-	public static final String FORMAT_NAME = "WKT";
+	public static final String FORMAT_NAME = "GeoJSON";
 
 	@Override
 	public String getName() {
@@ -23,7 +23,7 @@ public class WktWriter implements GeometryWriter {
 	 * @return
 	 */
 	public String write(Geometry geometry) {
-		WktVisitor visitor = new WktVisitor();
+		GeoJSONVisitor visitor = new GeoJSONVisitor();
 		geometry.accept(visitor);
 		return visitor.getResult();
 	}
