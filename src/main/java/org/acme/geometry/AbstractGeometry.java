@@ -9,6 +9,13 @@ public abstract class AbstractGeometry implements Geometry {
 		return visitor.getResult();
 	}
 	
+	@Override
+	public Envelope getEnvelope() {
+		EnvelopeBuilder builder = new EnvelopeBuilder();
+		accept(builder);
+		return builder.build();
+	}
+
 	public abstract Geometry clone() ;
 
 }
