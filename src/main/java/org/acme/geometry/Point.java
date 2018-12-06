@@ -54,5 +54,5 @@ public class Point implements Geometry {
 	public Envelope getEnvelope() {
 		return new Envelope(coordinate,coordinate);
 	}
-	
+
 }
