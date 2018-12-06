@@ -8,42 +8,42 @@ public class WktTest {
 	@Test
 	public void testEmptyPoint() {
 		Geometry g = new Point();
-		Assert.assertEquals("POINT EMPTY", g.asText());
+		Assert.assertEquals("POINT EMPTY", WKT.asText(g));
 	}
 
 	@Test
 	public void testPointOrigin() {
-		String wkt = TestGeometryFactory.createSamplePointA().asText();
+		String wkt = WKT.asText(TestGeometryFactory.createSamplePointA());
 		Assert.assertEquals("POINT(0.0 0.0)", wkt);
 	}
 
 	@Test
 	public void testPointB() {
-		String wkt = TestGeometryFactory.createSamplePointB().asText();
+		String wkt = WKT.asText(TestGeometryFactory.createSamplePointB());
 		Assert.assertEquals("POINT(3.0 4.0)", wkt);
 	}
 
 	@Test
 	public void testEmptyLineString() {
-		String wkt = (new LineString()).asText();
+		String wkt = WKT.asText(new LineString());
 		Assert.assertEquals("LINESTRING EMPTY", wkt);
 	}
 
 	@Test
 	public void testLineStringAB() {
-		String wkt = TestGeometryFactory.createLineStringAB().asText();
+		String wkt = WKT.asText(TestGeometryFactory.createLineStringAB());
 		Assert.assertEquals("LINESTRING(0.0 0.0,3.0 4.0)", wkt);
 	}
 
 	@Test
 	public void testEmptyCollection() {
-		String wkt = (new GeometryCollection()).asText();
+		String wkt = WKT.asText(new GeometryCollection());
 		Assert.assertEquals("GEOMETRYCOLLECTION EMPTY", wkt);
 	}
 
 	@Test
 	public void testCollectionA() {
-		String wkt = TestGeometryFactory.createCollectionA().asText();
+		String wkt = WKT.asText(TestGeometryFactory.createCollectionA());
 		Assert.assertEquals("GEOMETRYCOLLECTION(POINT(3.0 4.0),LINESTRING(0.0 0.0,3.0 4.0))", wkt);
 	}
 }
