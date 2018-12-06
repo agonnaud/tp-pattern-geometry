@@ -33,4 +33,10 @@ public interface Geometry {
 	 */
 	public Envelope getEnvelope() ;
 
+	/**
+	 * Applique un visiteur sur la géométrie
+	 * @param visitor
+	 */
+	public void accept(GeometryVisitor visitor);
+	
 }
