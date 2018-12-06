@@ -1,6 +1,15 @@
 package org.acme.geometry;
 
-public class GeometryWithCachedEnvelope implements Geometry {
+/**
+ * 
+ * Illustration du principe de décorateur sur la mise en cache de l'enveloppe
+ * 
+ * Remarque : On sent que la classe est trop complexe pour être décorée en situation réelle (trop de responsabilité difficile à "forwarder")
+ * 
+ * @author formation
+ *
+ */
+public class GeometryWithCachedEnvelope implements Geometry, GeometryListener {
 	
 	private Geometry original;
 	
@@ -8,6 +17,7 @@ public class GeometryWithCachedEnvelope implements Geometry {
 	
 	public GeometryWithCachedEnvelope(Geometry original) {
 		this.original = original;
+		this.original.addListener(this);
 	}
 
 	@Override
@@ -47,6 +57,23 @@ public class GeometryWithCachedEnvelope implements Geometry {
 	@Override
 	public void accept(GeometryVisitor visitor) {
 		this.original.accept(visitor);
+	}
+
+	@Override
+	public void triggerChange() {
+		this.original.triggerChange();
+	}
+
+	@Override
+	public void addListener(GeometryListener listener) {
+		// limite...
+		this.original.addListener(listener);
+	}
+
+	@Override
+	public void onChange(Geometry geometry) {
+		// nettoyage du cache
+		this.cachedEnvelope = null;
 	}
 
 }

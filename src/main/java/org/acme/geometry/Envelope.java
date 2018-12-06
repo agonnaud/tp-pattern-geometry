@@ -44,4 +44,13 @@ public class Envelope {
 	public double getYMax() {
 		return topRight.getY();
 	}
+
+	@Override
+	public String toString() {
+		if ( isEmpty() ) {
+			return "EMPTY";
+		}
+		return getXMin()+" "+getYMin()+" "+getXMax()+" "+getYMax();
+	}
+	
 }

@@ -1,11 +1,8 @@
 package org.acme.geometry;
 
-import java.util.Collection;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.mockito.invocation.Invocation;
 
 public class GeometryWithCachedEnvelopeTest {
 
@@ -14,18 +11,29 @@ public class GeometryWithCachedEnvelopeTest {
 		Geometry original = Mockito.mock(Geometry.class);
 		Envelope bbox = new Envelope();
 		Mockito.when(original.getEnvelope()).thenReturn(bbox);
-		
+
 		GeometryWithCachedEnvelope cached = new GeometryWithCachedEnvelope(original);
 		Assert.assertSame( bbox, cached.getEnvelope() );
 		Assert.assertSame( bbox, cached.getEnvelope() );
+		
 		// On vérifie que getEnvelope a été appelé une seule fois
-		Collection<Invocation> invocations = Mockito.mockingDetails(original).getInvocations();
-		Assert.assertEquals(
-			"original.getEnvelope() doit être appelé une seule fois",
-			1,
-			invocations.size()
-		);
-		//Mockito.verify(original,Mockito.times(1));		
+		Mockito.verify(original, Mockito.times(1)).getEnvelope();	
 	}
+
+	/**
+	 * Test fonctionnel en cas de translation
+	 */
+	@Test
+	public void testTranslate() {
+		Geometry original = TestGeometryFactory.createLineStringAB();
+		GeometryWithCachedEnvelope geometry = new GeometryWithCachedEnvelope(original);
+		Envelope bboxA = geometry.getEnvelope();
+		Assert.assertEquals("0.0 0.0 3.0 4.0", bboxA.toString());
+		geometry.translate(1.0, 1.0);
+		Envelope bboxB = geometry.getEnvelope();
+		Assert.assertNotSame(bboxA, bboxB);
+		Assert.assertEquals("1.0 1.0 4.0 5.0", bboxB.toString());
+	}
+
 	
 }
