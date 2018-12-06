@@ -31,11 +31,6 @@ public class GeometryWithCachedEnvelope implements Geometry, GeometryListener {
 	}
 
 	@Override
-	public void translate(double dx, double dy) {
-		this.original.translate(dx, dy);
-	}
-
-	@Override
 	public Geometry clone() {
 		// limite...
 		return this.original.clone();

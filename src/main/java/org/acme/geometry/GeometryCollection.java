@@ -45,13 +45,6 @@ public class GeometryCollection extends AbstractGeometry {
 	public boolean isEmpty() {
 		return geometries.isEmpty();
 	}
-	
-		@Override
-	public void translate(double dx, double dy) {
-		for (Geometry geometry : geometries) {
-			geometry.translate(dx, dy);
-		}
-	}
 
 	@Override
 	public <T> T accept(GeometryVisitor<T> visitor) {

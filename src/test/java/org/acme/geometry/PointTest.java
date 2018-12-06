@@ -22,14 +22,6 @@ public class PointTest {
 	}
 
 	@Test
-	public void testTranslate() {
-		Point g = TestGeometryFactory.createSamplePointB();
-		g.translate(2.0, 3.0);
-		Assert.assertEquals(5.0, g.getX(), EPSILON);
-		Assert.assertEquals(7.0, g.getY(), EPSILON);
-	}
-
-	@Test
 	public void testClone() {
 		Point g = new Point(new Coordinate(3.0, 4.0));
 		Point copy = g.clone();

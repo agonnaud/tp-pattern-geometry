@@ -28,5 +28,5 @@ public class GeometryWriterFactory {
 		}
 		return prototype.clone();
 	}
-	
+
 }

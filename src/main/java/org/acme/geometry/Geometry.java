@@ -15,13 +15,6 @@ public interface Geometry {
 	public boolean isEmpty();
 
 	/**
-	 * Translate la géométrie
-	 * @param dx
-	 * @param dy
-	 */
-	public void translate(double dx, double dy);
-	
-	/**
 	 * Renvoie une copie de la géométrie
 	 * @return
 	 */

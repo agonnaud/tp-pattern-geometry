@@ -37,15 +37,6 @@ public class Point extends AbstractGeometry {
 	}
 
 	@Override
-	public void translate(double dx, double dy) {
-		this.coordinate = new Coordinate(
-			this.coordinate.getX()+dx, 
-			this.coordinate.getY()+dy
-		);
-		triggerChange();
-	}
-
-	@Override
 	public Point clone() {
 		// Remarque : coordinate est immuable
 		return new Point(coordinate);

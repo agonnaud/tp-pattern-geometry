@@ -35,14 +35,6 @@ public class LineString extends AbstractGeometry {
 		return points.get(n);
 	}
 
-	@Override
-	public void translate(double dx, double dy) {
-		for (Point point : points) {
-			point.translate(dx, dy);
-		}
-		triggerChange();
-	}
-
 	
 	@Override
 	public LineString clone() {

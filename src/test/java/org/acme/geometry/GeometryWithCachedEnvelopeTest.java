@@ -21,18 +21,16 @@ public class GeometryWithCachedEnvelopeTest {
 	}
 
 	/**
-	 * Test fonctionnel en cas de translation
+	 * Test fonctionnel en cas de notification de changement
 	 */
 	@Test
-	public void testTranslate() {
+	public void testGeometryChange() {
 		Geometry original = TestGeometryFactory.createLineStringAB();
 		GeometryWithCachedEnvelope geometry = new GeometryWithCachedEnvelope(original);
 		Envelope bboxA = geometry.getEnvelope();
-		Assert.assertEquals("0.0 0.0 3.0 4.0", bboxA.toString());
-		geometry.translate(1.0, 1.0);
+		geometry.triggerChange();
 		Envelope bboxB = geometry.getEnvelope();
 		Assert.assertNotSame(bboxA, bboxB);
-		Assert.assertEquals("1.0 1.0 4.0 5.0", bboxB.toString());
 	}
 
 	
