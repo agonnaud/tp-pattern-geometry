@@ -33,5 +33,5 @@ public class GeoJSONWriter implements GeometryWriter {
 		// Serait réellement utile avec des paramètres
 		return new GeoJSONWriter();
 	}
-	
+
 }

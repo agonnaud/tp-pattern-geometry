@@ -32,6 +32,6 @@ public class WktWriter implements GeometryWriter {
 	public WktWriter clone() {
 		// Serait réellement utile avec des paramètres
 		return new WktWriter();
-	}	
+	}
 
 }

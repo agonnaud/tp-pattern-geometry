@@ -32,12 +32,6 @@ public interface Geometry {
 	 * @return
 	 */
 	public Envelope getEnvelope() ;
-	
-	/**
-	 * Renvoie le WKT
-	 * @return
-	 */
-	public String asText() ;
 
 	/**
 	 * Applique un visiteur sur la géométrie
