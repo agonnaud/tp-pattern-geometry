@@ -13,4 +13,6 @@ public interface GeometryVisitor {
 	
 	public void visit(LineString lineString);
 
+	public void visit(GeometryCollection geometryCollection);
+
 }

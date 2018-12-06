@@ -40,6 +40,22 @@ public class WktVisitor implements GeometryVisitor {
 		s.append(")");
 	}
 
+
+	@Override
+	public void visit(GeometryCollection geometryCollection) {
+		s.append("GEOMETRYCOLLECTION");
+		if ( geometryCollection.isEmpty() ) {
+			s.append(" EMPTY");
+			return;
+		}
+		for ( int i = 0; i < geometryCollection.getNumGeometries(); i++ ) {
+			if ( i != 0 ) {
+				s.append(",");
+			}
+			geometryCollection.getGeometryN(i).accept(this);
+		}
+	}
+	
 	/**
 	 * Ecriture d'une coordonnées
 	 * @param s
@@ -58,5 +74,6 @@ public class WktVisitor implements GeometryVisitor {
 	public String getResult(){
 		return s.toString();
 	}
+
 
 }
